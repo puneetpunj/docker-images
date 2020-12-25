@@ -1,8 +1,10 @@
-name: Docker Image CI
+name: Publish node-chrome docker image to Puneet's repository
 
 on:
   push:
     branches: [ master ]
+    paths:
+      - "node-chrome/dockerfile"
 
 jobs:
   build:
@@ -16,10 +18,6 @@ jobs:
           DOCKER_PASSWORD: ${{secrets.DOCKER_PASSWORD}}
         run: docker login -u $DOCKER_USER -p $DOCKER_PASSWORD
       - name: Build docker image
-        run: |
-          docker build . -f node-chrome/dockerfile --tag puneetpunj/node-chrome:latest
-          docker build . -f node-chrome-java/dockerfile --tag puneetpunj/node-chrome-java:latest
+        run: docker build . -f node-chrome/dockerfile --tag puneetpunj/node-chrome:latest
       - name: Docker push
-        run: |
-          docker push puneetpunj/node-chrome:latest
-          docker push puneetpunj/node-chrome-java:latest
+        run: docker push puneetpunj/node-chrome:latest
