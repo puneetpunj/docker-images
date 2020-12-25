@@ -20,4 +20,4 @@ jobs:
           docker build -t node-chrome:latest -f node-chrome/dockerfile .
       - name: Docker push
         run: |
-          docker push ${{secrets.DOCKER_USER}}/node-chrome:latest
+          docker push node-chrome:latest
