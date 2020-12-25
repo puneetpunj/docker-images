@@ -1,3 +1,5 @@
+# Sample commands to build and push images manually
+
 ## Build docker image
 
 ```
